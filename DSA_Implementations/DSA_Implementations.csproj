@@ -7,8 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="ALG - Searching\" />
-      <Folder Include="ALG - Sorting\" />
       <Folder Include="DS - Trees\" />
     </ItemGroup>
 
