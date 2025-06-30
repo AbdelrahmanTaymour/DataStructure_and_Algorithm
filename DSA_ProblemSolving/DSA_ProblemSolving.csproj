@@ -7,4 +7,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Arrays\" />
+      <Folder Include="Dictionary &amp; Hashset\" />
+      <Folder Include="Heap &amp; Priority Queue\" />
+      <Folder Include="LinkedList\" />
+      <Folder Include="Math\" />
+      <Folder Include="Recursion\" />
+      <Folder Include="Sorted List\" />
+      <Folder Include="Stacks &amp; Queues\" />
+      <Folder Include="Trees\" />
+    </ItemGroup>
+
 </Project>
