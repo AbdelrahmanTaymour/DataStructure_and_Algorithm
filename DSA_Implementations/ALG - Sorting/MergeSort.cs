@@ -1,54 +1,95 @@
 namespace DSA_Implementations.ALG___Sorting;
 
+/// <summary>
+/// Implements the Merge Sort algorithm using the divide-and-conquer strategy.
+/// Splits the array into smaller subarrays, sorts them, and then merges them back.
+/// </summary>
 public class MergeSort
 {
-    public static void Sort(int[] array)
+    /// <summary>
+    /// Initiates the Merge Sort algorithm on the given array.
+    /// Time Complexity: O(n log n) for all cases
+    /// Space Complexity: O(n) for a temporary array
+    /// </summary>
+    /// <param name="arrayToSort">Array to be sorted</param>
+    /// <remarks>
+    /// Advantages:
+    /// - Stable sorting algorithm
+    /// - Guaranteed O(n log n) performance
+    /// - Good for sorting linked lists
+    /// 
+    /// Disadvantages:
+    /// - Requires extra space
+    /// - Not in-place
+    /// - Overkill for small arrays
+    /// </remarks>
+    public static void Sort(int[] arrayToSort)
     {
-        if (array == null || array.Length <= 1)
+        // Handle base cases
+        if (arrayToSort == null || arrayToSort.Length <= 1)
             return;
         
-        int[] temp = new int[array.Length];
-        MergeSortRecursive(array, temp, 0, array.Length - 1);
+        // Create temporary array for merging
+        int[] tempArray = new int[arrayToSort.Length];
+        MergeSortRecursive(arrayToSort, tempArray, 0, arrayToSort.Length - 1);
     }
-    private static void MergeSortRecursive(int[] array, int[] temp, int left, int right)
+
+    /// <summary>
+    /// Recursively divides the array into smaller subarrays and sorts them.
+    /// </summary>
+    /// <param name="array">Array being sorted</param>
+    /// <param name="tempArray">Temporary array for merging</param>
+    /// <param name="leftIndex">Start index of current subarray</param>
+    /// <param name="rightIndex">End index of current subarray</param>
+    private static void MergeSortRecursive(int[] array, int[] tempArray, int leftIndex, int rightIndex)
     {
-        if(left >= right) 
+        if (leftIndex >= rightIndex) 
             return;
         
-        int mid = left + (right - left) / 2;
-        MergeSortRecursive(array, temp, left, mid);
-        MergeSortRecursive(array, temp, mid + 1, right);
-        Merge(array, temp, left, mid, right);
+        // Calculate middle point
+        int middleIndex = leftIndex + (rightIndex - leftIndex) / 2;
+        
+        // Recursively sort left and right halves
+        MergeSortRecursive(array, tempArray, leftIndex, middleIndex);
+        MergeSortRecursive(array, tempArray, middleIndex + 1, rightIndex);
+        
+        // Merge the sorted halves
+        Merge(array, tempArray, leftIndex, middleIndex, rightIndex);
     }
 
-    private static void Merge(int[] array, int[] temp, int left, int mid, int right)
+    /// <summary>
+    /// Merges two sorted subarrays into a single sorted array.
+    /// </summary>
+    /// <param name="array">Original array</param>
+    /// <param name="tempArray">Temporary array for merging</param>
+    /// <param name="leftIndex">Start of first subarray</param>
+    /// <param name="middleIndex">End of first subarray</param>
+    /// <param name="rightIndex">End of second subarray</param>
+    private static void Merge(int[] array, int[] tempArray, int leftIndex, int middleIndex, int rightIndex)
     {
-        int leftIndex = left;
-        int rightIndex = mid+1;
-        int tempIndex = left;
+        int leftSubarrayIndex = leftIndex;
+        int rightSubarrayIndex = middleIndex + 1;
+        int tempArrayIndex = leftIndex;
 
-        while (leftIndex <= mid && rightIndex <= right)
+        // Compare and merge elements from both subarrays
+        while (leftSubarrayIndex <= middleIndex && rightSubarrayIndex <= rightIndex)
         {
-            if(array[leftIndex] <= array[rightIndex])
-                temp[tempIndex++] = array[leftIndex++];
+            if (array[leftSubarrayIndex] <= array[rightSubarrayIndex])
+                tempArray[tempArrayIndex++] = array[leftSubarrayIndex++];
             else
-                temp[tempIndex++] = array[rightIndex++];
+                tempArray[tempArrayIndex++] = array[rightSubarrayIndex++];
         }
         
-        while(leftIndex <= mid)
-            temp[tempIndex++] = array[leftIndex++];
-
-        while (rightIndex <= right)
-            temp[tempIndex++] = array[rightIndex++];
+        // Copy remaining elements from left subarray, if any
+        while (leftSubarrayIndex <= middleIndex)
+            tempArray[tempArrayIndex++] = array[leftSubarrayIndex++];
         
-        for(int i = left; i <= right; i++)
-            array[i] = temp[i];
+        // Copy remaining elements from right subarray, if any
+        while (rightSubarrayIndex <= rightIndex)
+            tempArray[tempArrayIndex++] = array[rightSubarrayIndex++];
+        
+        // Copy merged elements back to original array
+        for (int i = leftIndex; i <= rightIndex; i++)
+            array[i] = tempArray[i];
     }
-
-    // public static void Main(string[] args)
-    // {
-    //     int[] array = { 2,4,5,7,1,2,3,6 };
-    //     Sort(array);
-    //     Console.WriteLine(string.Join(",", array));
-    // }
 }

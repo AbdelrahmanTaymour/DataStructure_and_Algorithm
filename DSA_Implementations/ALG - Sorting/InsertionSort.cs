@@ -1,31 +1,50 @@
 namespace DSA_Implementations.ALG___Sorting;
 
+/// <summary>
+/// Implements the Insertion Sort algorithm, which builds the final sorted array one item at a time.
+/// Similar to sorting playing cards in your hands, where you insert each card into its proper position.
+/// </summary>
 public class InsertionSort
 {
-    //Worst Case: O(N^2)
-    //Average Case: O(N^2)
-    //Best Case: O(N)
-    public static int[] Sort(int[] arr)
+    /// <summary>
+    /// Sorts an array using the Insertion Sort algorithm in descending order.
+    /// Time Complexity:
+    ///     - Worst Case: O(n²) - Array is sorted in the opposite order
+    ///     - Average Case: O(n²) - Random array
+    ///     - Best Case: O(n) - Array is already sorted
+    /// Space Complexity: O(1) - In-place sorting algorithm
+    /// </summary>
+    /// <param name="arrayToSort">The array to be sorted</param>
+    /// <returns>The sorted array in descending order</returns>
+    public static int[] Sort(int[] arrayToSort)
     {
-        for (int i = 1; i < arr.Length; i++)
+        // Start from the second element (index 1)
+        // as a single element is already sorted
+        for (int i = 1; i < arrayToSort.Length; i++)
         {
-            int key = arr[i];
-            int j = i-1; 
-            while(j>=0 && arr[j] < key)
+            // Store the current element that needs to be inserted
+            // into the sorted portion of the array
+            int currentElement = arrayToSort[i];
+            
+            // Start comparing with previous elements
+            int compareIndex = i - 1;
+            
+            // Move elements that are greater than the currentElement
+            // to one position ahead of their current position
+            // Note: < is used for descending order (change to > for ascending)
+            while (compareIndex >= 0 && arrayToSort[compareIndex] < currentElement)
             {
-                arr[j+1] = arr[j];
-                j--;
+                // Shift an element to the right to make space
+                arrayToSort[compareIndex + 1] = arrayToSort[compareIndex];
+                compareIndex--;
             }
-            arr[j+1] = key;
-            Console.WriteLine(string.Join(",", arr));
+            
+            // Place currentElement in its correct position
+            // compareIndex + 1 is used because the while loop
+            // decremented one extra time
+            arrayToSort[compareIndex + 1] = currentElement;
         }
-        return arr;
+        
+        return arrayToSort;
     }
-
-    // public static void Main(String[] args)
-    // {
-    //     int[] arr = new[] { 31, 41, 59, 26, 41, 58 };
-    //     Sort(arr);
-    //     Console.WriteLine(string.Join(",", arr));
-    // }
 }
