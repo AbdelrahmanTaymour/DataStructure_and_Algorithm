@@ -18,4 +18,8 @@
       <Folder Include="Trees\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DSA_Implementations\DSA_Implementations.csproj" />
+    </ItemGroup>
+
 </Project>
