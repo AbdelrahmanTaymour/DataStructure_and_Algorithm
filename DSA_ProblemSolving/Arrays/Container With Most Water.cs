@@ -5,11 +5,6 @@ namespace DSA_ProblemSolving.Arrays;
 
 public class ContainerWithMostWater
 {
-    private static int min(int val1, int val2)
-    {
-        return val1 <= val2 ? val1 : val2;
-    }
-    
     // Finds the maximum amount of water a container can store between two heights in an array.
     // The approach uses the two-pointer technique to find the maximum area efficiently.
     //
