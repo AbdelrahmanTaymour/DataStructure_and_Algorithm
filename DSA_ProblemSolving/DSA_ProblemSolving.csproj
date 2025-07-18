@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Dictionary &amp; Hashset\" />
       <Folder Include="Heap &amp; Priority Queue\" />
       <Folder Include="LinkedList\" />
       <Folder Include="Math\" />
