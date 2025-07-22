@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <Folder Include="Heap &amp; Priority Queue\" />
-      <Folder Include="LinkedList\" />
       <Folder Include="Math\" />
       <Folder Include="Recursion\" />
       <Folder Include="Sorted List\" />
