@@ -12,7 +12,6 @@
       <Folder Include="Math\" />
       <Folder Include="Sorted List\" />
       <Folder Include="Stacks &amp; Queues\" />
-      <Folder Include="Trees\" />
     </ItemGroup>
 
     <ItemGroup>
