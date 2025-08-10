@@ -11,7 +11,6 @@
       <Folder Include="Heap &amp; Priority Queue\" />
       <Folder Include="Math\" />
       <Folder Include="Sorted List\" />
-      <Folder Include="Stacks &amp; Queues\" />
     </ItemGroup>
 
     <ItemGroup>
